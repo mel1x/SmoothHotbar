@@ -1,0 +1,80 @@
+{
+  "modmenu.descriptionTranslation.smoothhotbar": "Плавный хотбар: скольжение рамки с выбором easing, плавные кулдауны, отдельный плоский дизайн, отступ от края и авто-скрытие.",
+  "modmenu.summaryTranslation.smoothhotbar": "Плавный анимированный хотбар.",
+
+  "smoothhotbar.config.title": "Smooth Hotbar - Настройки",
+  "smoothhotbar.config.category.general": "Основное",
+  "smoothhotbar.config.category.custom": "Кастомный дизайн",
+  "smoothhotbar.config.category.animation": "Анимация",
+  "smoothhotbar.config.category.auto_hide": "Авто-скрытие",
+
+  "smoothhotbar.design.vanilla": "Стандартный",
+  "smoothhotbar.design.custom": "Кастомный",
+
+  "smoothhotbar.easing.linear": "Линейная",
+  "smoothhotbar.easing.ease_out": "Замедление в конце",
+  "smoothhotbar.easing.ease_in_out": "Разгон и замедление",
+  "smoothhotbar.easing.expo": "Экспоненциальная",
+  "smoothhotbar.easing.back": "С перелетом",
+  "smoothhotbar.easing.elastic": "Пружина",
+
+  "smoothhotbar.option.enabled": "Включить Smooth Hotbar",
+  "smoothhotbar.option.enabled.tooltip": "Выключите, чтобы вернуть нетронутый ванильный хотбар, не удаляя мод.",
+
+  "smoothhotbar.option.design": "Дизайн",
+  "smoothhotbar.option.design.tooltip": "Стандартный использует текстуры игры, поэтому ресурспаки работают. Кастомный рисует плоскую панель, она настраивается на вкладке Кастомный дизайн. Анимации работают в обоих.",
+
+  "smoothhotbar.option.bottom_offset": "Отступ от нижнего края",
+  "smoothhotbar.option.bottom_offset.tooltip": "Насколько хотбар приподнят над нижним краем экрана, в пикселях интерфейса. Сердца, голод и опыт поднимаются вместе с ним.",
+
+  "smoothhotbar.option.scale": "Масштаб, %",
+  "smoothhotbar.option.scale.tooltip": "Размер хотбара вместе с полосками над ним.",
+
+  "smoothhotbar.option.corner_radius": "Скругление углов",
+  "smoothhotbar.option.corner_radius.tooltip": "0 - прямые углы, 4 - самые круглые.",
+
+  "smoothhotbar.option.background_opacity": "Непрозрачность фона, %",
+  "smoothhotbar.option.background_opacity.tooltip": "0 полностью убирает панель и оставляет только предметы.",
+
+  "smoothhotbar.option.background_color": "Цвет фона",
+  "smoothhotbar.option.background_color.tooltip": "Цвет панели хотбара.",
+
+  "smoothhotbar.option.slot_backgrounds": "Фон слотов",
+  "smoothhotbar.option.slot_backgrounds.tooltip": "Рисовать едва заметную ячейку под каждым слотом.",
+
+  "smoothhotbar.option.accent_color": "Акцентный цвет",
+  "smoothhotbar.option.accent_color.tooltip": "Цвет рамки выбора, ячеек слотов и индикатора атаки.",
+
+  "smoothhotbar.option.easing": "Easing",
+  "smoothhotbar.option.easing.tooltip": "Кривая анимации выбора слота. С перелетом и Пружина немного проскакивают слот и возвращаются.",
+
+  "smoothhotbar.option.selection_ms": "Длительность выбора (мс, 0 = мгновенно)",
+  "smoothhotbar.option.selection_ms.tooltip": "За сколько рамка выбора доезжает до нового слота.",
+
+  "smoothhotbar.option.selected_scale": "Размер выбранного предмета, %",
+  "smoothhotbar.option.selected_scale.tooltip": "Насколько увеличивается предмет в выбранном слоте. 100 отключает эффект.",
+
+  "smoothhotbar.option.wrap_portal": "Портал между слотами 1 и 9",
+  "smoothhotbar.option.wrap_portal.tooltip": "При переходе с 9 слота на 1 и обратно рамка уходит за один край и выходит из другого, а не летит через весь хотбар.",
+
+  "smoothhotbar.option.smooth_cooldowns": "Плавные кулдауны",
+  "smoothhotbar.option.smooth_cooldowns.tooltip": "Кулдауны предметов, например эндер-жемчуга, убывают каждый кадр, а не шагами по пикселю.",
+
+  "smoothhotbar.option.auto_hide": "Авто-скрытие",
+  "smoothhotbar.option.auto_hide.tooltip": "Убирать хотбар за край экрана, пока вы им не пользуетесь. Он возвращается при смене слота, подборе или использовании предметов, получении урона и открытии любого экрана.",
+
+  "smoothhotbar.option.hide_delay": "Скрывать через, секунд",
+  "smoothhotbar.option.hide_delay.tooltip": "Время бездействия до скрытия хотбара.",
+
+  "smoothhotbar.option.hide_anim_ms": "Анимация скрытия (мс, 0 = мгновенно)",
+  "smoothhotbar.option.hide_anim_ms.tooltip": "Длительность выезда и уезда.",
+
+  "smoothhotbar.option.hide_whole_hud": "Скрывать и полоски",
+  "smoothhotbar.option.hide_whole_hud.tooltip": "Сердца, голод, броня и опыт скрываются вместе с хотбаром. Выключите, чтобы скрывался только хотбар.",
+
+  "smoothhotbar.option.show_on_damage": "Показывать при уроне",
+  "smoothhotbar.option.show_on_damage.tooltip": "Возвращать хотбар, когда вы теряете здоровье.",
+
+  "smoothhotbar.option.show_on_use": "Показывать при использовании",
+  "smoothhotbar.option.show_on_use.tooltip": "Держать хотбар на экране, пока вы атакуете, едите, блокируете или натягиваете лук."
+}

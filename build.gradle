@@ -1,0 +1,211 @@
+plugins {
+	id 'base'
+	id 'fabric-loom' version "${loom_version}" apply false
+	id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
+}
+
+def minecraftTargets = [
+	'1.20.1': [
+		minecraft: '1.20.1', yarn: '1.20.1+build.10', java: 17,
+		loader: '0.16.14', fabricApi: '0.92.9+1.20.1',
+		clothConfig: '11.1.136', modMenu: '7.2.2', modVersion: '1.0',
+		legacy: true, matrix: '3d', overlay: 'item-in-slot', slot: 'field', hud: 'own', sprites: 'own'
+	],
+	'1.21.1': [
+		minecraft: '1.21.1', yarn: '1.21.1+build.3', java: 21,
+		loader: '0.18.4', fabricApi: '0.116.9+1.21.1',
+		clothConfig: '15.0.140', modMenu: '11.0.3', modVersion: '1.0',
+		legacy: true, matrix: '3d', overlay: 'item-in-slot', slot: 'field', hud: 'level', sprites: 'plain'
+	],
+	'1.21.2': [
+		minecraft: '1.21.2', yarn: '1.21.2+build.1', java: 21,
+		loader: '0.18.4', fabricApi: '0.106.1+1.21.2',
+		clothConfig: '16.0.143', modMenu: '12.0.1', modVersion: '1.0',
+		legacy: true, matrix: '3d', overlay: 'stack-overlay', slot: 'field', hud: 'level', sprites: 'layer',
+		releaseName: '1.21.2-1.21.4'
+	],
+	'1.21.5': [
+		minecraft: '1.21.5', yarn: '1.21.5+build.1', java: 21,
+		loader: '0.18.4', fabricApi: '0.128.2+1.21.5',
+		clothConfig: '18.0.145', modMenu: '14.0.1', modVersion: '1.0',
+		legacy: true, matrix: '3d', overlay: 'stack-overlay', slot: 'getter', hud: 'level', sprites: 'layer'
+	],
+	'1.21.7': [
+		minecraft: '1.21.7', yarn: '1.21.7+build.8', java: 21,
+		loader: '0.16.14', fabricApi: '0.129.0+1.21.7',
+		clothConfig: '19.0.147', modMenu: '15.0.0-beta.3', modVersion: '1.0',
+		legacy: true, matrix: '2d', overlay: 'stack-overlay', slot: 'getter', hud: 'main', sprites: 'pipeline',
+		releaseName: '1.21.6-1.21.8'
+	],
+	'1.21.11': [
+		minecraft: '1.21.11', yarn: '1.21.11+build.6', java: 21,
+		loader: '0.18.4', fabricApi: '0.141.4+1.21.11',
+		clothConfig: '21.11.153', modMenu: '17.0.1-beta.1', modVersion: '1.0',
+		legacy: true, matrix: '2d', overlay: 'stack-overlay', slot: 'getter', hud: 'main', sprites: 'pipeline',
+		releaseName: '1.21.9-1.21.11'
+	],
+	'26.1': [
+		minecraft: '26.1', java: 25,
+		loader: '0.16.14', fabricApi: '0.154.2+26.1.2',
+		clothConfig: '26.1.154', modMenu: '18.0.0', modVersion: '1.0',
+		legacy: false, hud: 'gui'
+	],
+	'26.2': [
+		minecraft: '26.2', java: 25,
+		loader: '0.19.3', fabricApi: '0.154.2+26.2',
+		clothConfig: '26.2.155', modMenu: '20.0.1', modVersion: '1.0',
+		legacy: false, hud: 'hud'
+	],
+	'26.3': [
+		minecraft: '26.3', java: 25,
+		loader: '0.19.5', fabricApi: '0.161.0+26.3',
+		clothConfig: '26.3.159', modMenu: '21.0.0-beta.1', modVersion: '1.0',
+		legacy: false, hud: 'hud'
+	]
+]
+
+def compatibilityTargets = [
+	'1.21.3': [yarn: '1.21.3+build.2', fabricApi: '0.114.1+1.21.3', clothConfig: '16.0.143', modMenu: '12.0.1'],
+	'1.21.4': [yarn: '1.21.4+build.8', fabricApi: '0.119.4+1.21.4', clothConfig: '17.0.144', modMenu: '13.0.4'],
+	'1.21.6': [yarn: '1.21.6+build.1', fabricApi: '0.128.2+1.21.6', clothConfig: '19.0.147', modMenu: '15.0.2'],
+	'1.21.8': [yarn: '1.21.8+build.1', fabricApi: '0.136.1+1.21.8', clothConfig: '19.0.147', modMenu: '15.0.2'],
+	'1.21.9': [yarn: '1.21.9+build.1', fabricApi: '0.134.1+1.21.9', clothConfig: '20.0.149', modMenu: '16.0.1'],
+	'1.21.10': [yarn: '1.21.10+build.3', fabricApi: '0.138.4+1.21.10', clothConfig: '20.0.149', modMenu: '16.0.1']
+]
+
+subprojects {
+	def target = minecraftTargets[project.name]
+	if (target == null) {
+		throw new GradleException("Unknown Minecraft target: ${project.path}")
+	}
+	target = new LinkedHashMap(target)
+
+	def compatProject = rootProject.findProperty('compatProject')
+	def compatVersion = rootProject.findProperty('compatVersion')
+	if (compatProject == project.name && compatVersion != null) {
+		def compat = compatibilityTargets[compatVersion]
+		if (compat == null) {
+			throw new GradleException("Unknown compatibility-test version: ${compatVersion}")
+		}
+		target.putAll(compat)
+		target.minecraft = compatVersion
+	}
+
+	apply plugin: target.legacy ? 'fabric-loom' : 'net.fabricmc.fabric-loom'
+	apply plugin: 'maven-publish'
+
+	version = target.modVersion
+	group = rootProject.maven_group
+
+	base {
+		archivesName = "${rootProject.archives_base_name}-${target.releaseName ?: target.minecraft}"
+	}
+
+	repositories {
+		maven { url = 'https://maven.shedaniel.me/' }
+		maven { url = 'https://maven.terraformersmc.com/releases/' }
+	}
+
+	dependencies {
+		minecraft "com.mojang:minecraft:${target.minecraft}"
+
+		if (target.legacy) {
+			mappings "net.fabricmc:yarn:${target.yarn}:v2"
+			modImplementation "net.fabricmc:fabric-loader:${target.loader}"
+			modImplementation "net.fabricmc.fabric-api:fabric-api:${target.fabricApi}"
+			modApi "me.shedaniel.cloth:cloth-config-fabric:${target.clothConfig}"
+			modApi "com.terraformersmc:modmenu:${target.modMenu}"
+		} else {
+			implementation "net.fabricmc:fabric-loader:${target.loader}"
+			implementation "net.fabricmc.fabric-api:fabric-api:${target.fabricApi}"
+			implementation "com.terraformersmc:modmenu:${target.modMenu}"
+			api("me.shedaniel.cloth:cloth-config-fabric:${target.clothConfig}") {
+				exclude group: 'net.fabricmc.fabric-api'
+			}
+		}
+	}
+
+	def javaDirectories = [rootProject.file('src/common/java')]
+	def resourceDirectories = [
+		rootProject.file('src/main/resources'),
+		project.file('src/main/resources')
+	]
+
+	if (target.legacy) {
+		javaDirectories << rootProject.file('src/legacy/java')
+		javaDirectories << rootProject.file("src/legacy-matrix${target.matrix}/java")
+		javaDirectories << rootProject.file("src/legacy-${target.overlay}/java")
+		javaDirectories << rootProject.file("src/legacy-slot-${target.slot}/java")
+		if (target.sprites != 'own') {
+			javaDirectories << rootProject.file("src/legacy-sprites-${target.sprites}/java")
+		}
+		if (target.hud == 'level') {
+			javaDirectories << rootProject.file('src/legacy-main-hud-level/java')
+		} else if (target.hud == 'main') {
+			javaDirectories << rootProject.file('src/legacy-main-hud/java')
+		}
+	} else {
+		javaDirectories << rootProject.file('src/modern/java')
+		javaDirectories << rootProject.file("src/modern-${target.hud}/java")
+	}
+
+	javaDirectories << project.file('src/main/java')
+
+	sourceSets {
+		main {
+			java.setSrcDirs(javaDirectories)
+			resources.setSrcDirs(resourceDirectories)
+		}
+	}
+
+	processResources {
+		inputs.property 'version', project.version
+		filesMatching('fabric.mod.json') {
+			expand version: project.version
+		}
+	}
+
+	tasks.withType(JavaCompile).configureEach {
+		options.release = target.java
+		options.encoding = 'UTF-8'
+	}
+
+	java {
+		withSourcesJar()
+		sourceCompatibility = JavaVersion.toVersion(target.java)
+		targetCompatibility = JavaVersion.toVersion(target.java)
+	}
+
+	jar {
+		inputs.property 'archivesName', project.base.archivesName
+		from(rootProject.file('LICENSE')) {
+			rename { "${it}_${inputs.properties.archivesName}" }
+		}
+	}
+
+	publishing {
+		publications {
+			create('mavenJava', MavenPublication) {
+				artifactId = project.base.archivesName.get()
+				from components.java
+			}
+		}
+	}
+}
+
+tasks.register('buildAll', Sync) {
+	group = 'build'
+	description = 'Builds every supported Minecraft version and collects the release JARs.'
+
+	def releaseJars = subprojects.collect {
+		def target = minecraftTargets[it.name]
+		it.tasks.named(target.legacy ? 'remapJar' : 'jar')
+	}
+	dependsOn subprojects.collect { it.tasks.named('build') }
+	from releaseJars
+	into layout.buildDirectory.dir('libs')
+}
+
+tasks.named('clean') {
+	dependsOn subprojects.collect { "${it.path}:clean" }
+}

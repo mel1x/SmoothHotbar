@@ -1,0 +1,80 @@
+{
+  "modmenu.descriptionTranslation.smoothhotbar": "Smooth hotbar with a sliding selection, easing curves, a portal between slots 1 and 9 and smooth cooldowns.",
+  "modmenu.summaryTranslation.smoothhotbar": "Smooth animated hotbar.",
+
+  "smoothhotbar.config.title": "Smooth Hotbar - Settings",
+  "smoothhotbar.config.category.general": "General",
+  "smoothhotbar.config.category.custom": "Custom design",
+  "smoothhotbar.config.category.animation": "Animation",
+  "smoothhotbar.config.category.auto_hide": "Auto-hide",
+
+  "smoothhotbar.design.vanilla": "Vanilla",
+  "smoothhotbar.design.custom": "Custom",
+
+  "smoothhotbar.easing.linear": "Linear",
+  "smoothhotbar.easing.ease_out": "Ease out",
+  "smoothhotbar.easing.ease_in_out": "Ease in-out",
+  "smoothhotbar.easing.expo": "Exponential",
+  "smoothhotbar.easing.back": "Overshoot",
+  "smoothhotbar.easing.elastic": "Elastic",
+
+  "smoothhotbar.option.enabled": "Enable Smooth Hotbar",
+  "smoothhotbar.option.enabled.tooltip": "Turn off to get the untouched vanilla hotbar back without removing the mod.",
+
+  "smoothhotbar.option.design": "Design",
+  "smoothhotbar.option.design.tooltip": "Vanilla keeps the game's hotbar textures, so resource packs apply. Custom draws a flat panel configured on the Custom design tab. Animations work in both.",
+
+  "smoothhotbar.option.bottom_offset": "Distance from the bottom edge",
+  "smoothhotbar.option.bottom_offset.tooltip": "How far the hotbar floats above the bottom of the screen, in GUI pixels. Hearts, hunger and experience move with it.",
+
+  "smoothhotbar.option.scale": "Scale, %",
+  "smoothhotbar.option.scale.tooltip": "Size of the hotbar together with the status bars above it.",
+
+  "smoothhotbar.option.corner_radius": "Corner radius",
+  "smoothhotbar.option.corner_radius.tooltip": "0 gives square corners, 4 the roundest.",
+
+  "smoothhotbar.option.background_opacity": "Background opacity, %",
+  "smoothhotbar.option.background_opacity.tooltip": "0 hides the panel completely and leaves only the items.",
+
+  "smoothhotbar.option.background_color": "Background color",
+  "smoothhotbar.option.background_color.tooltip": "Color of the hotbar panel.",
+
+  "smoothhotbar.option.slot_backgrounds": "Slot backgrounds",
+  "smoothhotbar.option.slot_backgrounds.tooltip": "Draw a faint cell behind every slot.",
+
+  "smoothhotbar.option.accent_color": "Accent color",
+  "smoothhotbar.option.accent_color.tooltip": "Color of the selection frame, slot cells and attack indicator.",
+
+  "smoothhotbar.option.easing": "Easing",
+  "smoothhotbar.option.easing.tooltip": "Curve of the selection animation. Overshoot and Elastic go slightly past the slot and settle back.",
+
+  "smoothhotbar.option.selection_ms": "Selection duration (ms, 0 = instant)",
+  "smoothhotbar.option.selection_ms.tooltip": "Time for the selection frame to reach the new slot.",
+
+  "smoothhotbar.option.selected_scale": "Selected item size, %",
+  "smoothhotbar.option.selected_scale.tooltip": "How much the item in the selected slot grows. 100 turns the effect off.",
+
+  "smoothhotbar.option.wrap_portal": "Portal between slots 1 and 9",
+  "smoothhotbar.option.wrap_portal.tooltip": "Going from slot 9 to 1 or back, the frame leaves through one edge and enters from the other instead of flying across the whole hotbar.",
+
+  "smoothhotbar.option.smooth_cooldowns": "Smooth cooldowns",
+  "smoothhotbar.option.smooth_cooldowns.tooltip": "Item cooldowns such as ender pearls shrink every frame instead of in pixel steps.",
+
+  "smoothhotbar.option.auto_hide": "Auto-hide",
+  "smoothhotbar.option.auto_hide.tooltip": "Slide the hotbar off the screen while you are not using it. It comes back when you switch slots, pick up or use items, take damage or open a screen.",
+
+  "smoothhotbar.option.hide_delay": "Hide after, seconds",
+  "smoothhotbar.option.hide_delay.tooltip": "Idle time before the hotbar hides.",
+
+  "smoothhotbar.option.hide_anim_ms": "Hide animation (ms, 0 = instant)",
+  "smoothhotbar.option.hide_anim_ms.tooltip": "Duration of the slide in and out.",
+
+  "smoothhotbar.option.hide_whole_hud": "Hide status bars too",
+  "smoothhotbar.option.hide_whole_hud.tooltip": "Hearts, hunger, armor and experience hide together with the hotbar. Turn off to hide only the hotbar.",
+
+  "smoothhotbar.option.show_on_damage": "Show on damage",
+  "smoothhotbar.option.show_on_damage.tooltip": "Bring the hotbar back when you lose health.",
+
+  "smoothhotbar.option.show_on_use": "Show while using items",
+  "smoothhotbar.option.show_on_use.tooltip": "Keep the hotbar visible while you attack, eat, block or draw a bow."
+}
